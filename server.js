@@ -2,6 +2,7 @@ const express = require('express');
 const hbs = require('hbs');
 
 var app = express();
+const port = process.env.PORT || 3000;
 
 hbs.registerPartials(__dirname + '/views/partials');
 app.set('view engine', 'hbs');
@@ -15,12 +16,6 @@ hbs.registerHelper('screamIt', (text) => {
   return text.toUpperCase();
 });
 
-app.use(function (req, res, next) {
-  res.render('maintenance.hbs' {
-    pageTitle: 'Maintenance Page',
-    userName: 'Anish Raparla'
-  });
-});
 
 app.get('/', function(req, res) {
   res.send({
@@ -44,6 +39,6 @@ app.get('/bad', function(req, res) {
   res.send('Error');
 })
 
-app.listen(3000, function() {
-  console.log('Server is up on port 3000');
+app.listen(port, function() {
+  console.log(`Server is up on port ${port}`);
 });
